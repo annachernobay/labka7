@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="labka7.cpp" />
     <ClCompile Include="MyException.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="SinglyLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SinglyLinkedList.h" />

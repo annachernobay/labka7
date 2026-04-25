@@ -8,6 +8,7 @@
 		T data;
 		std::unique_ptr<Node<T>> pnext;
 		//std::weak_ptr<Node<T>> pprevent;
+		Node<T>* prev;
 
 	};
 
