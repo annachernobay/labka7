@@ -128,10 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="labka7.cpp" />
+    <ClCompile Include="MyException.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="SinglyLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyException.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="SinglyLinkedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

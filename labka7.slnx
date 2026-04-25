@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="labka7/labka7.vcxproj" />
+  <Project Path="labka7/labka7.vcxproj" Id="51e096c1-571e-46f7-90f5-99350661b4ce" />
 </Solution>

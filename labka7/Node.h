@@ -4,9 +4,10 @@
 	struct Node
 
 	{
+		int index;
 		T data;
 		std::unique_ptr<Node<T>> pnext;
-		srd::unique_ptr<Node<T>> pprevent;
+		//std::weak_ptr<Node<T>> pprevent;
 
 	};
 
