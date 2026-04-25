@@ -1,4 +1,6 @@
 #include "SinglyLinkedList.h"
+#include "MyException.h"
+#include <exception>
 #include <iostream>
 #include <memory>
 
@@ -57,7 +59,7 @@ template<typename T>
 void SinglyLinkedList<T>::deleteFront()
 {
 	if (phead == nullptr) {
-		std::cout << "SinglyLinkedList is already empty" << std::endl;
+		throw MyException("SinglyLinkedList is already empty");
 	}
 
 	phead = std::move(phead->pnext);
@@ -68,9 +70,10 @@ void SinglyLinkedList<T>::deleteFront()
 template<typename T>
 void SinglyLinkedList<T>::deleteBack()
 {
-	if (phead==nullptr) {
-	std::cout << "SinglyLinkedList is already empty"<<std::endl;
-}
+	if (phead == nullptr) {
+		throw MyException("SinglyLinkedList is already empty");
+	}
+
 	if (!phead->pnext) {
 	 phead = nullptr;
 		
@@ -93,34 +96,42 @@ void SinglyLinkedList<T>::deleteBack()
 template<typename T>
 void SinglyLinkedList<T>::addByIndex(const T& data, int index)
 {
-	if (index == 0) {
-		addFront(data);
+	if (index<0 || index>size) {
+		throw MyException("out of range");
+		
 	}
-	if (index == size) {
-		addBack(data);
-	}
+		if (index == 0) {
+			addFront(data);
+			return;
+		}
+		if (index == size) {
+			addBack(data);
+			return;
+		}
 
-	std::unique_ptr<Node<T>> newNode = std::make_unique<Node<T>>(data);
+		std::unique_ptr<Node<T>> newNode = std::make_unique<Node<T>>(data);
 
-	Node<T>* prev = phead.get();
-	for (int i = 0; i < index - 1; ++i) {
-		prev = prev->pnext.get();
-	}
+		Node<T>* prev = phead.get();
+		for (int i = 0; i < index - 1; ++i) {
+			prev = prev->pnext.get();
+		}
 
-	newNode->pnext = std::move(prev->pnext);
-	prev->pnext = std::move(newNode);
-	std::cout << "SinglyLinkedList addByIndex element" << std::endl;
-	size++;
+		newNode->pnext = std::move(prev->pnext);
+		prev->pnext = std::move(newNode);
+		std::cout << "SinglyLinkedList addByIndex element" << std::endl;
+		size++;
+	
 }
 
 
 template<typename T>
 void SinglyLinkedList<T>::deleteByIndex(int index)
 {
-	if (phead == nullptr)
-	{
-		std::cout << "SinglyLinkedList is already empty" << std::endl;
-
+	if (index<0 || index>size) {
+		throw MyException("out of range");
+	}
+	if (phead == nullptr) {
+		throw MyException("SinglyLinkedList is already empty");
 	}
 	else {
 
@@ -202,6 +213,10 @@ void SinglyLinkedList<T>::printList() const
 template<typename T>
 T& SinglyLinkedList<T>::operator[](int index)
 {
+	if (index<0 || index>size) {
+		throw MyException("out of range");
+	}
+
 	std::cout << "access by index operator[]" << std::endl;
 	Node<T>* current = phead.get();
 	int i = 0;

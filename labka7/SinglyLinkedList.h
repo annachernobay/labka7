@@ -3,6 +3,7 @@
 #include <memory>
 template<typename T>
 
+
 class SinglyLinkedList
 {
 private:
