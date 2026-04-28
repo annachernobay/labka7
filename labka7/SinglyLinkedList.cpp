@@ -1,6 +1,5 @@
 #include "SinglyLinkedList.h"
 #include "MyException.h"
-#include <exception>
 #include <iostream>
 #include <memory>
 
@@ -111,7 +110,7 @@ void SinglyLinkedList<T>::addByIndex(const T& data, int index)
 
 		std::unique_ptr<Node<T>> newNode = std::make_unique<Node<T>>(data);
 
-		Node<T>* prev = phead.get();
+		Node<T>* current = phead.get();
 		for (int i = 0; i < index - 1; ++i) {
 			prev = prev->pnext.get();
 		}
