@@ -67,7 +67,7 @@ void DoubleLinkedList<T>::deleteFront()
 
 	phead = std::move(phead->pnext);
 
-	if (phead !== nullptr) {
+	if (phead != nullptr) {
 		phead->prev = nullptr;
 	}
 	else {
@@ -128,8 +128,16 @@ void DoubleLinkedList<T>::addByIndex(const T& data, int index)
 		current = current->pnext.get();
 	}
 
-	newNode->pnext = std::move(current->pnext);
-		current->pnext = std::move(newNode);
+
+	newNode->pnext =std::move(current->pnext);
+	newNode->prev=current;
+
+	if (newNode->pnext) {
+		newNode->pnext->prev = newNode.get();
+	}
+
+	current->pnext = std::move(newNode);
+
 
 	std::cout << "DoubleLinkedList addByIndex element" << std::endl;
 	size++;
@@ -143,7 +151,7 @@ void DoubleLinkedList<T>::deleteByIndex(int index)
 	if (index<0 || index>=size) {
 		throw MyException("out of range");
 	}
-	if (phead == nullptr || ptail == nullptr) {
+	if (phead == nullptr) {
 		throw MyException("DoubleLinkedList is already empty");
 	}
 
@@ -166,7 +174,14 @@ void DoubleLinkedList<T>::deleteByIndex(int index)
 				ptail = current;
 			}
 			else {
-				current->pnext = std::move(current->pnext->pnext);
+
+				Node<T>* toDelete = current->pnext.get();
+				current->pnext = std::move(toDelete->pnext);
+
+				if (current->pnext) {
+					current->pnext->prev = current;
+				}
+
 			}
 		}
 
@@ -237,7 +252,7 @@ void DoubleLinkedList<T>::printList() const
 template<typename T>
 T& DoubleLinkedList<T>::operator[](int index)
 {
-	if (index<0 || index>size) {
+	if (index<0 || index>=size) {
 		throw MyException("out of range");
 	}
 

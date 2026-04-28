@@ -112,11 +112,11 @@ void SinglyLinkedList<T>::addByIndex(const T& data, int index)
 
 		Node<T>* current = phead.get();
 		for (int i = 0; i < index - 1; ++i) {
-			prev = prev->pnext.get();
+			current = current->pnext.get();
 		}
 
-		newNode->pnext = std::move(prev->pnext);
-		prev->pnext = std::move(newNode);
+		newNode->pnext = std::move(current->pnext);
+		current->pnext = std::move(newNode);
 		std::cout << "SinglyLinkedList addByIndex element" << std::endl;
 		size++;
 	
@@ -126,7 +126,7 @@ void SinglyLinkedList<T>::addByIndex(const T& data, int index)
 template<typename T>
 void SinglyLinkedList<T>::deleteByIndex(int index)
 {
-	if (index<0 || index>size) {
+	if (index<0 || index>=size) {
 		throw MyException("out of range");
 	}
 	if (phead == nullptr) {
@@ -212,7 +212,7 @@ void SinglyLinkedList<T>::printList() const
 template<typename T>
 T& SinglyLinkedList<T>::operator[](int index)
 {
-	if (index<0 || index>size) {
+	if (index<0 || index>=size) {
 		throw MyException("out of range");
 	}
 

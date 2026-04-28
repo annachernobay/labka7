@@ -1,20 +1,50 @@
-// labka7.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#include "DoubleLinkedList.cpp"
+#include "SinglyLinkedList.cpp"
 #include <iostream>
+#include <string>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    try {
+        SinglyLinkedList<int> a;
+        a.addFront(2);
+        a.addFront(7);
+        a.addFront(9);
+        a.addBack(3);
+        a.deleteFront();
+        a.deleteBack();
+        a.deleteByIndex(1);
+        a.addByIndex(100, 0);
+        a.getSize();
+        a.isEmpty();
+        a.findElement(7);
+        a.printList();
+        std::cout << a[4] << std::endl;
+    }
+    catch (const MyException& error) {
+        std::cout << "Error: " << error.what() << std::endl;
+    };
+
+    std::cout<<std::endl;
+
+    try {
+        DoubleLinkedList<std::string> b;
+        b.addFront("all");
+        b.addFront("beat");
+        b.addFront("castle");
+        b.addFront("power");
+        b.addBack("spring");
+        b.deleteFront();
+        b.deleteBack();
+        b.deleteByIndex(1);
+        b.addByIndex("word", 2);
+        b.getSize();
+        b.isEmpty();
+        b.findElement("word");
+        b.printList();
+        std::cout << b[1] << std::endl;
+    }
+    catch (const MyException& error) {
+        std::cout << "Error: " << error.what() << std::endl;
+    }
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
